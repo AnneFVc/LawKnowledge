@@ -25,6 +25,5 @@ public class InsightService {
     public List<Insight> listarPorDocumento(Documento doc) {
         return repository.findByDocumento(doc);
     }
-
-
+    
 }
