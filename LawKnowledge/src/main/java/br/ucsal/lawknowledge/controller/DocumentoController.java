@@ -1,12 +1,13 @@
 package br.ucsal.lawknowledge.controller;
 
+import br.ucsal.lawknowledge.dto.DocumentoDTO;
 import br.ucsal.lawknowledge.model.Documento;
 import br.ucsal.lawknowledge.service.DocumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/documentos")
@@ -17,8 +18,8 @@ public class DocumentoController {
     private DocumentoService service;
 
     @PostMapping
-    public Documento salvar(@RequestBody Documento doc) {
-        return service.salvar(doc);
+    public ResponseEntity<DocumentoDTO> salvar(@RequestBody DocumentoDTO doc) {
+        return ResponseEntity.ok(service.salvar(doc));
     }
 
     @GetMapping
@@ -27,8 +28,8 @@ public class DocumentoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Documento> buscarPorId(@PathVariable Long id) {
-        return service.buscarPorId(id);
+    public DocumentoDTO findById(@PathVariable Long id) {
+        return service.findById(id);
     }
 
     @GetMapping("/buscar")
